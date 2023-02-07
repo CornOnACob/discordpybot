@@ -46,9 +46,6 @@ async def on_message(message):
             await loading_message.delete()
             if (len(res) > 1900):
                 chunks1 = [res[i:i+1900] for i in range(0, len(res), 1900)]
-                for chunk in chunks1:
-                    print(chunk)
-                    print("---")
                 chunks = split_string(res)
                 for chunk in chunks:
                     await message.channel.send(quotes + chunk + quotes)
