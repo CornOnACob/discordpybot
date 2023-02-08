@@ -30,7 +30,7 @@ async def on_message(message):
     if message.author == bot.user:
         return
     version = ""
-    if GPT_ENGINE in os.environ:
+    if os.environ["BOT_VER"] == 2:
         version = "2"
     if message.channel.name.startswith('chatgpt' + version):
         quotes = ""
