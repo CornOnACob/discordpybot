@@ -2,9 +2,6 @@ import os
 import discord
 from discord.ext import commands
 
-from dotenv import load_dotenv
-load_dotenv()
-
 from revChatGPT.Official import AsyncChatbot
 gpt = AsyncChatbot(api_key=os.environ["OPENAI_API_KEY"])
 
