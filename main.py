@@ -2,8 +2,8 @@ import os
 import discord
 from discord.ext import commands
 
-# from dotenv import load_dotenv
-# load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
 
 from revChatGPT.Official import AsyncChatbot
 gpt = AsyncChatbot(api_key=os.environ["OPENAI_API_KEY"])
@@ -36,12 +36,10 @@ async def on_message(message):
         quotes = ""
         if message.channel.name == 'chatgpt':
             quotes = "```"
-        loading_message = await message.channel.send('```json\n"ChatGPT is generating a response....."\n```')#, reference=message)
+        loading_message = await message.channel.send('```json\n"ChatGPT is generating a response....."\n```')
         try:
             data = await gpt.ask(message.content)
             res = data["choices"][0]["text"]
-            # if res[0] == " ":
-                # res = res[1:]
             res = res.lstrip()
             await loading_message.delete()
             if (len(res) > 1900):
@@ -49,10 +47,8 @@ async def on_message(message):
                 chunks = split_string(res)
                 for chunk in chunks:
                     await message.channel.send(quotes + chunk + quotes)
-                    # await message.channel.send(chunk)
             else:
                 await message.channel.send(quotes + res + quotes)
-                # await message.channel.send(res)
         except Exception as e:
             await message.channel.send("```An error has occured.. Try again or contact Michael```")
             print("An error occurred:", e)
