@@ -30,11 +30,11 @@ async def on_message(message):
     if message.author == bot.user:
         return
     version = ""
-    if (os.environ["GPT_ENGINE"]):
+    if GPT_ENGINE in os.environ:
         version = "2"
     if message.channel.name.startswith('chatgpt' + version):
         quotes = ""
-        if message.channel.name == 'chatgpt':
+        if message.channel.name == 'chatgpt' or message.channel.name == 'chatgpt2':
             quotes = "```"
         loading_message = await message.channel.send('```json\n"ChatGPT is generating a response....."\n```')
         try:
