@@ -47,7 +47,7 @@ async def on_message(message):
             else:
                 await message.channel.send(quotes + res + quotes)
         except Exception as e:
-            await message.channel.send("```An error has occured.. Try again or contact Michael```")
+            await message.channel.send("An error occurred: " + str(e))
             print("An error occurred:", e)
 
 bot.run(os.environ["DISCORD_TOKEN"])
